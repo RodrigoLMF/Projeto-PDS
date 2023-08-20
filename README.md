@@ -1,4 +1,4 @@
-# Projeto da disciplina de Prática em Desenvolvimento de Software
+# Aplicação de controle financeiro entre amigos
 
 ## Membros e papéis
 
