@@ -2,10 +2,10 @@
 
 ## Membros e papéis
 
-Rodrigo Luiz Macêdo Ferreira (front-end e DBA)
-Igor Roiz Teixeira (full stack)
-Pedro Henrique Solano De Oliveira (back-end)
-Emyle Santos Lima (back-end)
+-  Rodrigo Luiz Macêdo Ferreira (front-end e DBA)
+-  Igor Roiz Teixeira (full stack)
+-  Pedro Henrique Solano De Oliveira (back-end)
+-  Emyle Santos Lima (back-end)
 
 ## Escopo
 
