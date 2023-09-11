@@ -1,4 +1,4 @@
-# Aplicação de controle financeiro entre amigos
+# Aplicação de controle financeiro entre amigos (CrtlF)
 
 ## Membros e papéis
 
