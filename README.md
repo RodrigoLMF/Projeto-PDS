@@ -17,10 +17,10 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 2. Como usuário eu gostaria de dividir o valor de uma conta.
 3. Como usuário eu gostaria de comparar minha dívida com outra pessoa.
 4. Como usuário eu gostaria de calcular os juros nas contas.
-5. Como usuário eu gostaria de consultar meu saldo de entrada e saída.
+5. Como usuário eu gostaria de consultar meu saldo de entrada, saída e o saldo total.
 6. Como usuário eu gostaria de poder criar um grupo com outros usuários.(Como administrador)
 7. Como usuário eu gostaria de poder cadastrar contas de um grupo.
-8. Como usuário eu gostaria de poder consultar um extrato periódico.
+8. Como usuário eu gostaria de poder filtrar contas por um período.
 9. Como usuário eu gostaria de poder definir uma conta como quitada.
 10. Como participante de um grupo eu gostaria de cadastrar uma conta no grupo.
 11. Como administrador eu gostaria de poder aprovar a conta como paga.
