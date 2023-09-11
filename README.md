@@ -33,7 +33,7 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 
 ## Backlog da Sprint
 
-* História 1: Como usuário eu gostaria de poder cadastar uma conta(um valor monetário)
+História 1: Como usuário eu gostaria de poder cadastar uma conta(um valor monetário)
    - 
 
 ## Tecnologias
