@@ -14,7 +14,7 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 ## Backlog do Produto
 
 1. Como usuário eu gostaria de cadastrar uma conta (um valor monetário).
-2. Como usuário eu gostaria de dividir o valor de uma conta.
+2. Como usuário eu gostaria de parcelar o valor de uma conta.
 3. Como usuário eu gostaria de comparar minha dívida com outra pessoa.
 4. Como usuário eu gostaria de calcular os juros nas contas.
 5. Como usuário eu gostaria de consultar meu saldo de entrada, saída e o saldo total.
