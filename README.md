@@ -11,6 +11,10 @@
 
 Nós desenvolveremos uma aplicação web para controle e gerenciamento financeiro entre grupos de amigos. Nesse sentido, os principais objetivos da aplicação seriam de facilitar e organizar possíveis relações financeiras que ocorrem nesse contexto, como empréstimos, dívidas, consórcios, etc. 
 
+## Backlog do Produto
+
+* 
+
 ## Tecnologias
 
 HTML5, CSS3, python, JavaScript, MySQL Workbench, Node.js, Express.js
