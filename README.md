@@ -21,7 +21,7 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 6. Como usuário eu gostaria de poder criar um grupo com outros usuários.(Como administrador)
 7. Como usuário eu gostaria de poder cadastrar contas de um grupo.
 8. Como usuário eu gostaria de poder consultar um extrato periódico.
-9. Como usuário eu gostaria de poder definir uma dívida como quitada.
+9. Como usuário eu gostaria de poder definir uma conta como quitada.
 10. Como participante de um grupo eu gostaria de cadastrar uma conta no grupo.
 11. Como administrador eu gostaria de poder aprovar a conta como paga.
 12. Como usuário eu gostaria de poder convidar um usuário para um grupo.
