@@ -27,7 +27,7 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 12. Como usuário eu gostaria de poder convidar um usuário para um grupo.
 13. Como administrador de um grupo eu gostaria de poder aprovar a entrada de um usuário em um grupo.
 14. Como usuário eu gostaria de poder ver a listagem de grupos que eu sou um participante.
-15. Como administrador de um grupo eu gostaria de poder remover um usuário.
+15. Como usuário eu gostaria de ser notificado sobre uma conta a ser paga.
 16. Como usuário eu gostaria de poder cadastrar um perfil
 17. Como usuário eu gostaria de poder acessar o sistema fazendo login
 
