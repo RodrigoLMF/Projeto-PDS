@@ -31,6 +31,10 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 16. Como usuário eu gostaria de poder cadastrar um perfil
 17. Como usuário eu gostaria de poder acessar o sistema fazendo login
 
+## Backlog da Sprint
+
+# História 1: Como usuário eu gostaria de poder cadastar uma conta
+
 ## Tecnologias
 
-HTML5, CSS3, python, JavaScript, MySQL Workbench, Node.js, Express.js
+HTML5, CSS3, python, JavaScript, MySQL Workbench, Node.js, Express.js, Balsamiq
