@@ -94,7 +94,7 @@ Tarefas e responsáveis:
    - Desenvolvimento do componente web da listagem de contas de um usuário [Rodrigo]
    - Implementação da lógica backend do filtro de contas de um usuário [Pedro]
    - Integração backend e frontend da funcionalidade do filtro de contas [Emyle]
-   - Realização de testes para homologar a história [Pedro
+   - Realização de testes para homologar a história [Pedro]
 
 ### História 8: Como usuário eu gostaria de parcelar o valor de uma conta
 	
