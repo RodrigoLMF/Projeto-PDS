@@ -43,10 +43,11 @@ História 1: Como usuário eu gostaria de poder cadastrar um perfil
 
 História 2: Como usuário eu gostaria de poder acessar o sistema fazendo login
 	Tarefas e responsáveis:
-    - Desenvolvimento da interface web da tela de login [Rodrigo]
-    - Desenvolvimento da lógica backend para realizar o login [Pedro]
-    - Integração backend e frontend da tela de login [Emyle]
-    - Realização de testes para homologar a história [Igor]
+   - Desenvolvimento da interface web da tela de login [Rodrigo]
+   - Desenvolvimento da lógica backend para realizar o login [Pedro]
+   - Integração backend e frontend da tela de login [Emyle]
+   - Integração backend e frontend da tela de cadastro [Pedro]
+   - Realização de testes para homologar a história [Igor]
 
 ## Tecnologias
 
