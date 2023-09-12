@@ -35,11 +35,11 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 
 História 1: Como usuário eu gostaria de poder cadastrar um perfil
 	Tarefas e responsáveis:
-   -- Implementação do banco de dados e criação das tabelas pertinentes [Rodrigo]
-   -- Desenvolvimento da interface web da tela de cadastro [Igor]
-   -- Implementação no backend a lógica para realizar o cadastro [Emyle]
-   -- Integração backend e frontend da tela de cadastro [Pedro]
-   -- Realização de testes para homologar a história [Pedro e Emyle]
+   - Implementação do banco de dados e criação das tabelas pertinentes [Rodrigo]
+   - Desenvolvimento da interface web da tela de cadastro [Igor]
+   - Implementação no backend a lógica para realizar o cadastro [Emyle]
+   - Integração backend e frontend da tela de cadastro [Pedro]
+   - Realização de testes para homologar a história [Pedro e Emyle]
 
 
 ## Tecnologias
