@@ -49,6 +49,53 @@ História 2: Como usuário eu gostaria de poder acessar o sistema fazendo login
    - Integração backend e frontend da tela de cadastro [Pedro]
    - Realização de testes para homologar a história [Igor]
 
+História 3: Como usuário eu gostaria de poder cadastrar uma conta(um valor monetário)
+	Tarefas e responsáveis:
+   - Criação das tabelas e relacionamentos pertinentes no banco de dados [Igor]
+   - Desenvolvimento do componente web de cadastro de conta da homepage [Rodrigo]
+   - Implementação da lógica backend para cadastrar uma conta para um usuário [Emyle]
+   - Integração backend e frontend da homepage [Pedro]
+   - Realização de testes para homologar a história [Emyle e Pedro]
+
+História 4: Como usuário eu gostaria de consultar meu saldo de entrada, saída e o saldo total
+	Tarefas e responsáveis:
+   - Criação das tabelas e ou relacionamentos pertinentes no banco de dados[Igor]
+   - Desenvolvimento do componente web responsável por exibir o saldo de entrada ou saída [Rodrigo]
+   - Implementação da lógica backend para consulta do saldo de entrada e saída [Pedro]
+   - Integração backend e frontend da funcionalidade de consulta de saldo de entrada e saída [Pedro]
+   - Realização de testes para homologar a história [Igor]
+
+História 5: Como usuário eu gostaria de poder definir uma conta como quitada
+	Tarefas e responsáveis:
+   - Atualização de tabela do banco de dados para incluir pagamento [Rodrigo]
+   - Adicionar componente na tela para quitar conta [Igor]
+   - Desenvolver lógica backend para quitar conta [Emyle]
+   - Integração backend e frontend da funcionalidade de quitar uma conta [Pedro]
+   - Realização de testes para homologar a história [Emyle]
+
+História 6: Como usuário eu gostaria de ser notificado sobre uma conta a ser paga
+	Tarefas e responsáveis:
+   - Criação das tabelas e ou relacionamentos pertinentes no banco de dados[Rodrigo]
+   - Desenvolvimento do componente web responsável pelas notificações [Rodrigo e Igor]
+   - Implementação da lógica backend para emissão da notificação [Emyle]
+   - Integração backend e frontend da funcionalidade de notificação [Pedro]
+   - Realização de testes para homologar a história [Rodrigo]
+
+História 7: Como usuário eu gostaria de poder filtrar contas por um período
+	Tarefas e responsáveis:
+   - Desenvolvimento do componente web responsável por filtrar as contas [Igor]
+   - Desenvolvimento do componente web da listagem de contas de um usuário [Rodrigo]
+   - Implementação da lógica backend do filtro de contas de um usuário [Pedro]
+   - Integração backend e frontend da funcionalidade do filtro de contas [Emyle]
+   - Realização de testes para homologar a história [Pedro
+
+História 8: Como usuário eu gostaria de parcelar o valor de uma conta
+	Tarefas e responsáveis:
+   - Desenvolvimento do componente web de parcelamento de uma conta [Rodrigo e Igor]
+   - Desenvolvimento da lógica backend responsável por realizar o parcelamento de uma conta [Emyle]
+   - Integração backend e frontend da funcionalidade de parcelamento de conta [Emyle e Pedro]
+   - Realização de testes para homologar a história [Rodrigo]
+
 ## Tecnologias
 
 HTML5, CSS3, python, JavaScript, MySQL Workbench, Node.js, Express.js, Balsamiq
