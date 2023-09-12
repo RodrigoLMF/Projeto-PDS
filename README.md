@@ -34,7 +34,8 @@ Nós desenvolveremos uma aplicação web para controle e gerenciamento financeir
 ## Backlog da Sprint
 
 ### História 1: Como usuário eu gostaria de poder cadastrar um perfil
-	* Tarefas e responsáveis:
+
+Tarefas e responsáveis:
    - Implementação do banco de dados e criação das tabelas pertinentes [Rodrigo]
    - Desenvolvimento da interface web da tela de cadastro [Igor]
    - Implementação no backend a lógica para realizar o cadastro [Emyle]
