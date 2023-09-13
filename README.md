@@ -104,6 +104,10 @@ Tarefas e responsáveis:
    - Integração backend e frontend da funcionalidade de parcelamento de conta [Emyle e Pedro]
    - Realização de testes para homologar a história [Rodrigo]
 
+### Link projeto Balsamiq:
+
+   - https://balsamiq.cloud/sv9oiw1/pq93hu3
+
 ## Tecnologias
 
 HTML5, CSS3, python, JavaScript, MySQL Workbench, Node.js, Express.js, Balsamiq
