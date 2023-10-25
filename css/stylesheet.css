@@ -69,6 +69,10 @@ h2.active {
   border-bottom: 2px solid #5fbae9;
 }
 
+h2.title {
+  color: #0d0d0d;
+}
+
 input[type=button], input[type=submit], input[type=reset]  {
   background-color: #56baed;
   border: none;
