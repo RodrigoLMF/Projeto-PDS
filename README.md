@@ -1,5 +1,7 @@
 # CrtlF (Aplicação de controle financeiro entre amigos)
 
+[Acesse a aplicação aqui](https://rodrigolmf.github.io/Projeto-PDS/)
+
 ## Membros e papéis
 
 -  Rodrigo Luiz Macêdo Ferreira (front-end e DBA)
