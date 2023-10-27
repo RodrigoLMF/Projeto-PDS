@@ -1,9 +1,12 @@
+const userDomain = require('../domain/User/userDomain.js');
+const billDomain = require('../domain/Bill/billDomain.js');
 const express = require('express');
 const app = express();
 
 function start() {
+    app.use(express.static('public'));
+    
     app.get('/', (req, res) => {
-        //res.render('index.html');
         res.send('Página inicial')
     });
 
