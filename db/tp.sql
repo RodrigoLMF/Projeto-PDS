@@ -16,6 +16,65 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `BILL`
+--
+
+DROP TABLE IF EXISTS `BILL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `BILL` (
+  `BILL_ID` int NOT NULL,
+  `USER_ID` int NOT NULL,
+  `BILL_NAME` varchar(255) NOT NULL,
+  `BILL_VALUE` float NOT NULL,
+  `BILL_TYPE` char(1) NOT NULL,
+  `BILL_DIVIDE` tinyint NOT NULL,
+  `BILL_REPEAT` tinyint NOT NULL,
+  `BILL_NUM_PARTs` int DEFAULT NULL,
+  `BILL_FIRST_PAYMENT` date DEFAULT NULL,
+  `BILL_PAYDAY` date DEFAULT NULL,
+  PRIMARY KEY (`BILL_ID`),
+  KEY `BILL_USER_ID_FK_idx` (`USER_ID`),
+  CONSTRAINT `BILL_USER_ID_FK` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `BILL`
+--
+
+LOCK TABLES `BILL` WRITE;
+/*!40000 ALTER TABLE `BILL` DISABLE KEYS */;
+/*!40000 ALTER TABLE `BILL` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `NOTIFICATION`
+--
+
+DROP TABLE IF EXISTS `NOTIFICATION`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `NOTIFICATION` (
+  `NOTIFICATION_ID` int NOT NULL,
+  `NOTIFICATION_DESC` varchar(255) NOT NULL,
+  `USER_ID` int NOT NULL,
+  PRIMARY KEY (`NOTIFICATION_ID`),
+  KEY `USER_ID_FK` (`USER_ID`),
+  CONSTRAINT `USER_ID_FK` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `NOTIFICATION`
+--
+
+LOCK TABLES `NOTIFICATION` WRITE;
+/*!40000 ALTER TABLE `NOTIFICATION` DISABLE KEYS */;
+/*!40000 ALTER TABLE `NOTIFICATION` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `USER`
 --
 
@@ -28,45 +87,6 @@ CREATE TABLE `USER` (
   `USER_PASSWORD` varchar(45) NOT NULL,
   PRIMARY KEY (`USER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- 
--- Table structure for table `NOTIFICATION`
---
-
-DROP TABLE IF EXISTS `NOTIFICATION`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `NOTIFICATION` (
-  `NOTIFICATION_ID` int NOT NULL,
-  `NOTIFICATION_DESC` varchar(45) NOT NULL,
-  `USER_ID` int NOT NULL,
-  PRIMARY KEY (`NOTIFICATION_ID`),
-  FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
--- 
--- Table structure for table `BILL`
---
-
-DROP TABLE IF EXISTS `BILL`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE BILL (
-  `BILL_ID` int NOT NULL,
-  `USER_ID` int NOT NULL,
-  `BILL_NAME` VARCHAR(255) NOT NULL,
-  `BILL_VALUE` FLOAT NOT NULL,
-  `BILL_TYPE` CHAR(1) NOT NULL CHECK (type IN ('D', 'G')),
-  `BILL_DIVIDE` BOOLEAN NOT NULL,
-  `BILL_REPEAT` BOOLEAN NOT NULL,
-  `BILL_NUM_PARTs` INT,
-  `BILL_FIRST_PAYMENT` DATE,
-  `BILL_PAYDAY` DATE,
-  PRIMARY KEY (`BILL_ID`),
-  FOREIGN KEY (`USER_ID`) REFERENCES USER(`USER_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-25 18:17:49
+-- Dump completed on 2023-10-28 22:33:53
