@@ -29,6 +29,29 @@ CREATE TABLE `USER` (
   PRIMARY KEY (`USER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- 
+-- Table structure for table `NOTIFICATION`
+--
+
+DROP TABLE IF EXISTS `NOTIFICATION`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `NOTIFICATION` (
+  `NOTIFICATION_ID` int NOT NULL,
+  `NOTIFICATION_DESC` varchar(45) NOT NULL,
+  `USER_ID` int NOT NULL,
+  PRIMARY KEY (`NOTIFICATION_ID`),
+  FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- 
+-- Table structure for table `BILL`
+--
+
+DROP TABLE IF EXISTS `BILL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE BILL (
   'BILL_ID' int NOT NULL,
   'USER_ID' int NOT NULL
