@@ -7,7 +7,6 @@ class UserRepo {
 
     addUser(user) {
         return new Promise((resolve, reject) => {
-            // Não é necessário incluir USER_ID no INSERT para permitir autoincremento
             var sql = "INSERT INTO USER (USER_LOGIN, USER_PASSWORD) VALUES ('" + user.login + "','" + user.password + "')";
             con.query(sql, (err, result) => {
                 if (err) return reject(err);
