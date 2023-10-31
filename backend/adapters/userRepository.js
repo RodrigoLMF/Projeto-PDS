@@ -7,15 +7,16 @@ class UserRepo {
 
     addUser(user) {
         return new Promise((resolve, reject) => {
-            // resolver autoincremento de IDs depois
-            var sql = "INSERT INTO USER (USER_ID, USER_LOGIN, USER_PASSWORD) VALUES ('8','" + user.login + "','" + user.password + "')";
+            // Não é necessário incluir USER_ID no INSERT para permitir autoincremento
+            var sql = "INSERT INTO USER (USER_LOGIN, USER_PASSWORD) VALUES ('" + user.login + "','" + user.password + "')";
             con.query(sql, (err, result) => {
                 if (err) return reject(err);
                 console.log("1 record inserted, ID: " + result.insertId);
-                return (resolve(result));
+                return resolve(result);
             });
         });
     }
+    
 
     findByLogin(login) {
         return new Promise((resolve, reject) => {
