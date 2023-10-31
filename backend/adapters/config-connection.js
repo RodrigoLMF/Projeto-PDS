@@ -1,19 +1,15 @@
-var mysql = require('mysql2');
-const util = require("util"); 
+require('dotenv').config();
 
-var con = mysql.createConnection({
+var mysql = require('mysql2/promise');
+
+const user = process.env.USER;
+const password = process.env.PASSWORD;
+
+var connection = mysql.createPool({
     host: "localhost",
-    user: 'root',
-    password: 'Lwymmd!3',
+    user: user,
+    password: password,
     database: 'tp_pds',
 });
 
-//con.query = util.promisify(con.query).bind(con);
-  
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
-
-module.exports = con;
-
+module.exports = connection;
