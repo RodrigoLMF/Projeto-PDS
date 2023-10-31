@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `BILL`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `BILL` (
-  `BILL_ID` int NOT NULL,
+  `BILL_ID` int NOT NULL AUTO_INCREMENT,
   `USER_ID` int NOT NULL,
   `BILL_NAME` varchar(255) NOT NULL,
   `BILL_VALUE` float NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `BILL` (
   `BILL_FIRST_PAYMENT` date DEFAULT NULL,
   `BILL_PAYDAY` date DEFAULT NULL,
   PRIMARY KEY (`BILL_ID`),
-  KEY `BILL_USER_ID_FK_idx` (`USER_ID`),
+  KEY `USER_ID_FK_idx` (`USER_ID`),
   CONSTRAINT `BILL_USER_ID_FK` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -56,12 +56,12 @@ DROP TABLE IF EXISTS `NOTIFICATION`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `NOTIFICATION` (
-  `NOTIFICATION_ID` int NOT NULL,
+  `NOTIFICATION_ID` int NOT NULL AUTO_INCREMENT,
   `NOTIFICATION_DESC` varchar(255) NOT NULL,
   `USER_ID` int NOT NULL,
   PRIMARY KEY (`NOTIFICATION_ID`),
-  KEY `USER_ID_FK` (`USER_ID`),
-  CONSTRAINT `USER_ID_FK` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`)
+  KEY `USER_ID_FK_idx` (`USER_ID`),
+  CONSTRAINT `NOTIFICATION_USER_ID_FK` FOREIGN KEY (`USER_ID`) REFERENCES `USER` (`USER_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `USER`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `USER` (
-  `USER_ID` int NOT NULL,
+  `USER_ID` int NOT NULL AUTO_INCREMENT,
   `USER_LOGIN` varchar(45) NOT NULL,
   `USER_PASSWORD` varchar(45) NOT NULL,
   PRIMARY KEY (`USER_ID`)
@@ -107,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-28 22:33:53
+-- Dump completed on 2023-10-30 22:03:38
