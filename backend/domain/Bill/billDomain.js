@@ -7,25 +7,59 @@ var repository = null;
 function configRepo(repo) {
     repository = repo;
 }
-
-function splitBill() {
-
+function getNewDate(date, i) {
+    date.setMonth(date.getMonth() + i);
 }
 
-function repeatBill() {
-
+function getNewValue(bill) {
+    return bill.value / bill.numParts;
 }
 
-function registerBill(userID, name, value, type, divide, repeat, num_parts, first_payment, payday) {
-    // resolver userID depois
-    newBill = new Bill(0, userID, name, value, type, divide, repeat, num_parts, first_payment, payday)
+function splitBill(bill) {
+    var billList = [];
+
+    for (let i = 0; i < bill.numParts; i++) {
+        let newBill = bill.clone();
+        
+        getNewDate(newBill.payday, i);
+        newBill.value = getNewValue(bill);
+
+        billList.push(newBill);
+    }
+    return billList;
+}
+
+function repeatBill(bill) {
+    var billList = [];
+    
+    for (let i = 0; i < bill.numParts; i++) {
+        let newBill = bill.clone();
+        getNewDate(newBill.payday, i);
+        billList.push(newBill);
+    }
+
+    return billList;
+}
+
+function registerBill(userID, billName, value, type, divide, repeat, numParts, firstPayment, payday) {
+
+    newBill = new Bill(0, userID, billName, value, type, divide, repeat, numParts, firstPayment, payday)
+    let billList;
+
     return new Promise((resolve, reject) => {
-        if (divide) {  // resolver depois
-            splitBill()
-        } else if (repeat) {  // resolver depois
-            repeatBill()
+        if (divide) {  
+            billList = splitBill(newBill);
+
+        } else if (repeat) {  
+            billList = repeatBill(newBill);
+
         } else {
-            repository.add(newBill).then((result) => {
+            billList = [newBill];
+        }
+
+        for (let i = 0; i < billList.length; i++) {
+
+            repository.add(billList[i]).then((result) => {
                 //newBill.setId = result.id
                 resolve({ message: 'Usuário cadastrado com sucesso!' });
             }).catch((err) => {
