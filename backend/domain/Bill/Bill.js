@@ -1,20 +1,34 @@
 
 class Bill {
-    constructor(billID, userID, name, value, type, divide, repeat, num_parts, first_payment, payday) {
-      this.billID = billID;
-      this.userID = userID;
-      this.name = name;
-      this.value = value;
-      this.type = type;
-      this.divide = divide;
-      this.repeat = repeat;
-      this.num_parts = num_parts;
-      this.first_payment = first_payment;
-      this.payday = payday;
+    constructor(billID, userID, billName, value, type, divide, repeat, numParts, firstPayment, payday) {
+        this.billID = billID;
+        this.userID = userID;
+        this.name = billName;
+        this.value = value;
+        this.type = type;
+        this.divide = divide;
+        this.repeat = repeat;
+        this.numParts = numParts;
+        this.firstPayment = firstPayment;
+        this.payday = payday;
     }
-    
+
     setId(id) {
         this.id = id;
+    }
+
+    clone() {
+        return new Bill(
+            this.billID,
+            this.userID,
+            this.name,
+            this.value,
+            this.type,
+            this.divide,
+            this.repeat,
+            this.numParts,
+            new Date(this.firstPayment),
+            new Date(this.payday));
     }
 }
 
