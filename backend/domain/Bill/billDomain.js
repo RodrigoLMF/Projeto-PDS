@@ -107,6 +107,18 @@ function getAllBills(userId){
     });
 }
 
+function getBillsWithinPeriod(userId, startDate, endDate) {
+    return new Promise((resolve, reject) => {
+        repository.getBillsWithinPeriod(userId, startDate, endDate).then((billList) => {
+            resolve(billList);
+        }).catch((err) => {
+            console.error("Erro ao buscar contas:", err);
+            reject(new Error('Erro ao buscar contas. Por favor, tente novamente mais tarde.'));
+        });
+    }); 
+}
+
+
 function getParcialBalanceAll(userId, type) {
     return new Promise((resolve, reject) => {
       getAllBills(userId) // Chama a função para obter todas as contas
@@ -151,3 +163,4 @@ module.exports.payBill = payBill;
 module.exports.getAllBills = getAllBills;
 module.exports.getParcialBalanceAll = getParcialBalanceAll;
 module.exports.getTotalBalanceAll = getTotalBalanceAll;
+module.exports.getBillsWithinPeriod = getBillsWithinPeriod;
