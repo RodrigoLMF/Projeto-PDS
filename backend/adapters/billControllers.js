@@ -37,6 +37,8 @@ router.post('/conta/quitarConta', (req, res) => {
 });
 
 router.post('/conta/listarContas', (req, res) => {
+    const { userID } = req.body;
+
     billDomain.getAllBillsByUserId(userID)
         .then(bills => {
             res.status(200).json({ bills });
@@ -46,5 +48,18 @@ router.post('/conta/listarContas', (req, res) => {
             res.status(500).json({ message: 'Erro ao listar contas. Por favor, tente novamente mais tarde.' });
         });
 });
+
+router.post('/conta/somatorioContasPositivasAll', (req, res) => {
+    const { userID } = req.body;
+  
+    billDomain.getPositiveBalanceAll(userID)
+      .then((sum) => {
+        res.status(200).json({ sum });
+      })
+      .catch((error) => {
+        console.error('Erro ao calcular o somatório das contas positivas:', error);
+        res.status(500).json({ message: 'Erro ao calcular o somatório das contas positivas. Por favor, tente novamente mais tarde.' });
+      });
+  });
 
 module.exports = router;
