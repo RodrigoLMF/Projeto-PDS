@@ -17,8 +17,10 @@ function start() {
     app.use('/conta/pagarConta', billRouter);
     app.use('/conta/listarContas', billRouter);
     app.use('/conta/somatorioContasPositivasAll', billRouter);
+    app.use('/conta/listarContasEmIntervalo', billRouter);
 
     app.use('/', notificationRouter);
+    app.use('/notificacao/getNotificacoes', notificationRouter);
 
     const PORT = 3000;
     app.listen(PORT, '0.0.0.0', () => {
