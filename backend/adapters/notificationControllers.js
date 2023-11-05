@@ -3,14 +3,12 @@ const express = require('express');
 const router = express.Router();
 const notificationDomain = require('../domain/Notification/notificationDomain.js');
 
-// resolver userID
-let userId = 1;
-
 router.get('/', (req, res) => {
     res.send("Página principal do painel notificação")
 });
 
 router.post('/notificacao/getNotificacoes', (req, res) => {
+    const { userId } = req.body;
     
     notificationDomain.getUserNotifications(userId)
         .then(result => {

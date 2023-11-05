@@ -3,15 +3,12 @@ const express = require('express');
 const router = express.Router();
 const billDomain = require('../domain/Bill/billDomain.js');
 
-// resolver userId
-let userId = 1;
-
 router.get('/', (req, res) => {
     res.send("Página principal do painel conta")
 });
 
 router.post('/conta/cadastrarConta', (req, res) => {
-    const { billName, value, type, divide, repeat, numParts, firstPayment, payday } = req.body;
+    const { userId, billName, value, type, divide, repeat, numParts, firstPayment, payday } = req.body;
 
     billDomain.registerBill(userId, billName, value, type, divide, repeat, numParts, firstPayment, payday)
         .then(result => {
