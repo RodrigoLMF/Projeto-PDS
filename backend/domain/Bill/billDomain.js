@@ -107,21 +107,21 @@ function getAllBills(userId){
     });
 }
 
-function getPositiveBalanceAll(userId) {
+function getParcialBalanceAll(userId, type) {
     return new Promise((resolve, reject) => {
       getAllBills(userId) // Chama a função para obter todas as contas
         .then((bills) => {
           // Filtra as contas onde o "type" é igual a "G" (positivo)
-          const positiveBills = bills.filter((bill) => bill.type === 'G');
+          const parcialBills = bills.filter((bill) => bill.type === type);
           
           // Calcula o somatório dos valores das contas positivas
-          const sum = positiveBills.reduce((total, bill) => total + bill.value, 0);
+          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
           
           resolve(sum); // Retorna o somatório
         })
         .catch((error) => {
-          console.error('Erro ao buscar e calcular contas positivas:', error);
-          reject(new Error('Erro ao buscar contas positivas. Por favor, tente novamente mais tarde.'));
+          console.error('Erro ao buscar e calcular contas parciais:', error);
+          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
         });
     });
 }
@@ -130,4 +130,4 @@ module.exports.configRepo = configRepo;
 module.exports.registerBill = registerBill;
 module.exports.payBill = payBill;
 module.exports.getAllBills = getAllBills;
-module.exports.getPositiveBalanceAll = getPositiveBalanceAll;
+module.exports.getParcialBalanceAll = getParcialBalanceAll;
