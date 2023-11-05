@@ -4,7 +4,7 @@ const router = express.Router();
 const billDomain = require('../domain/Bill/billDomain.js');
 
 // resolver userID
-let userID = 1;
+let userId = 1;
 
 router.get('/', (req, res) => {
     res.send("Página principal do painel conta")
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 router.post('/conta/cadastrarConta', (req, res) => {
     const { billName, value, type, divide, repeat, numParts, firstPayment, payday } = req.body;
 
-    billDomain.registerBill(userID, billName, value, type, divide, repeat, numParts, firstPayment, payday)
+    billDomain.registerBill(userId, billName, value, type, divide, repeat, numParts, firstPayment, payday)
         .then(result => {
             res.status(200).json({ message: 'Conta cadastrado com sucesso!' });
         })
@@ -37,9 +37,9 @@ router.post('/conta/quitarConta', (req, res) => {
 });
 
 router.post('/conta/listarContas', (req, res) => {
-    const { userID } = req.body;
+    const { userId } = req.body;
 
-    billDomain.getAllBillsByUserId(userID)
+    billDomain.getAllBillsByUserId(userId)
         .then(bills => {
             res.status(200).json({ bills });
         })
@@ -50,16 +50,16 @@ router.post('/conta/listarContas', (req, res) => {
 });
 
 router.post('/conta/somatorioContasPositivasAll', (req, res) => {
-    const { userID } = req.body;
-  
-    billDomain.getPositiveBalanceAll(userID)
-      .then((sum) => {
-        res.status(200).json({ sum });
-      })
-      .catch((error) => {
-        console.error('Erro ao calcular o somatório das contas positivas:', error);
-        res.status(500).json({ message: 'Erro ao calcular o somatório das contas positivas. Por favor, tente novamente mais tarde.' });
-      });
-  });
+    const { userId } = req.body;
+
+    billDomain.getPositiveBalanceAll(userId)
+        .then((sum) => {
+            res.status(200).json({ sum });
+        })
+        .catch((error) => {
+            console.error('Erro ao calcular o somatório das contas positivas:', error);
+            res.status(500).json({ message: 'Erro ao calcular o somatório das contas positivas. Por favor, tente novamente mais tarde.' });
+        });
+});
 
 module.exports = router;
