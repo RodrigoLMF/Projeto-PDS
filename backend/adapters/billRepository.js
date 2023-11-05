@@ -9,8 +9,13 @@ const add = async (bill) => {
         BILL_TYPE, BILL_DIVIDE, BILL_REPEAT, BILL_NUM_PARTs, BILL_FIRST_PAYMENT, BILL_PAYDAY)
         VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [bill.userID, bill.name, bill.value, bill.type,
         bill.divide, bill.repeat, bill.numParts, firstPayment, payday]);
-    console.log(query)
     return query;
 };
 
+const payBill = async (billId) => {
+    const [query] = await connection.execute(`UPDATE BILL SET BILL_TYPE = 'P' WHERE BILL_ID = (?)`, [billId]);
+    return query;
+}
+
 module.exports.add = add;
+module.exports.payBill = payBill;

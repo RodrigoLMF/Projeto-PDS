@@ -20,7 +20,7 @@ function splitBill(bill) {
 
     for (let i = 0; i < bill.numParts; i++) {
         let newBill = bill.clone();
-        
+
         getNewDate(newBill.payday, i);
         newBill.value = getNewValue(bill);
 
@@ -31,7 +31,7 @@ function splitBill(bill) {
 
 function repeatBill(bill) {
     var billList = [];
-    
+
     for (let i = 0; i < bill.numParts; i++) {
         let newBill = bill.clone();
         getNewDate(newBill.payday, i);
@@ -47,10 +47,10 @@ function registerBill(userID, billName, value, type, divide, repeat, numParts, f
     let billList;
 
     return new Promise((resolve, reject) => {
-        if (divide) {  
+        if (divide) {
             billList = splitBill(newBill);
 
-        } else if (repeat) {  
+        } else if (repeat) {
             billList = repeatBill(newBill);
 
         } else {
@@ -61,7 +61,7 @@ function registerBill(userID, billName, value, type, divide, repeat, numParts, f
 
             repository.add(billList[i]).then((result) => {
                 //newBill.setId = result.id
-                resolve({ message: 'Usuário cadastrado com sucesso!' });
+                resolve({ message: 'Conta cadastrada com sucesso!' });
             }).catch((err) => {
                 console.log("Erro ao cadastrar conta:", err);
                 reject(new Error('Erro ao cadastrar conta. Por favor, tente novamente mais tarde.'));
@@ -71,6 +71,17 @@ function registerBill(userID, billName, value, type, divide, repeat, numParts, f
     });
 }
 
+function payBill(billId) {
+    return new Promise((resolve, reject) => {
+        repository.payBill(billId).then((result) => {
+            resolve({ message: 'Conta quitada com sucesso!' });
+        }).catch((err) => {
+            console.log("Erro ao quitar conta:", err);
+            reject(new Error('Erro ao quitar conta. Por favor, tente novamente mais tarde.'));
+        });
+    });
+}
 
 module.exports.configRepo = configRepo;
 module.exports.registerBill = registerBill;
+module.exports.payBill = payBill;
