@@ -1,15 +1,20 @@
-const { get } = require('http');
 var connection = require('./config-connection');
+const getBillsWithinPeriod = require('./billRepository').getBillsWithinPeriod;
 
 const add = async (notification) => {
-    const [query] = await connection.execute(``);
-    return query;
-}
+    try {
+        const [bills] = await connection.execute(`INSERT INTO NOTIFICATION 
+            (USER_ID, BILL_ID, NOTIFICATION_DESC, ISSUE_DATE)
+            VALUES ( ?, ?, ?, ? )`,
+            [notification.userId, notification.billId, notification.description, notification.issueDate]);
+            return query;
 
-const getNotificationsByUserId = async (userId) => {
-    const [query] = await connection.execute(``);
-    return query;
+    } catch (error) {
+        console.error('Erro ao cadastrar notificações:', error);
+        throw error;
+    }
 }
 
 module.exports.add = add;
-module.exports.getNotificationsByUserId = getNotificationsByUserId;
+module.exports.getBillsWithinPeriod = getBillsWithinPeriod;
+
