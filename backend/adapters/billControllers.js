@@ -49,6 +49,20 @@ router.post('/conta/listarContas', (req, res) => {
         });
 });
 
+router.post('/conta/listarContasEmIntervalo', (req, res) => {
+  const { startDate, endDate} = req.body;
+
+  billDomain.getBillsWithinPeriod(userId, startDate, endDate)
+      .then(bills => {
+          //res.status(200).json({ bills });
+          res.send(bills);
+      })
+      .catch(error => {
+          console.error('Erro ao listar contas:', error);
+          res.status(500).json({ message: 'Erro ao listar contas. Por favor, tente novamente mais tarde.' });
+      });
+});
+
 router.post('/conta/somatorioContasParciaisAll', (req, res) => {
     const { userID, type } = req.body;
   
