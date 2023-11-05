@@ -57,8 +57,21 @@ router.post('/conta/somatorioContasParciaisAll', (req, res) => {
         res.status(200).json({ sum });
       })
       .catch((error) => {
-        console.error('Erro ao calcular o somatório das contas positivas:', error);
-        res.status(500).json({ message: 'Erro ao calcular o somatório das contas positivas. Por favor, tente novamente mais tarde.' });
+        console.error('Erro ao calcular o somatório das contas parciais:', error);
+        res.status(500).json({ message: 'Erro ao calcular o somatório das contas parciais. Por favor, tente novamente mais tarde.' });
+      });
+  });
+
+  router.post('/conta/somatorioContasTotaisAll', (req, res) => {
+    const { userID } = req.body;
+  
+    billDomain.getPositiveBalanceAll(userID)
+      .then((sum) => {
+        res.status(200).json({ sum });
+      })
+      .catch((error) => {
+        console.error('Erro ao calcular o somatório das contas :', error);
+        res.status(500).json({ message: 'Erro ao calcular o somatório das contas . Por favor, tente novamente mais tarde.' });
       });
   });
 
