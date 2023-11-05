@@ -92,7 +92,20 @@ router.post('/conta/somatorioContasParciaisAll', (req, res) => {
   router.post('/conta/somatorioContasTotaisAll', (req, res) => {
     const { userID } = req.body;
   
-    billDomain.getPositiveBalanceAll(userID)
+    billDomain.getTotalBalanceAll(userID)
+      .then((sum) => {
+        res.status(200).json({ sum });
+      })
+      .catch((error) => {
+        console.error('Erro ao calcular o somatório das contas :', error);
+        res.status(500).json({ message: 'Erro ao calcular o somatório das contas . Por favor, tente novamente mais tarde.' });
+      });
+  });
+
+  router.post('/conta/somatorioContasTotaisEmIntervalo', (req, res) => {
+    const { userID, startDate, endDate  } = req.body;
+  
+    billDomain.getTotalBalanceWithinPeriod(userID, startDate, endDate )
       .then((sum) => {
         res.status(200).json({ sum });
       })

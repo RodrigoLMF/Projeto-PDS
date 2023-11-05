@@ -20,6 +20,7 @@ function start() {
     app.use('/conta/somatorioContasTotaisAll', billRouter);
     app.use('/conta/listarContasEmIntervalo', billRouter);
     app.use('/conta/somatorioContasParciaisEmIntervalo', billRouter);
+    app.use('/conta/somatorioContasTotaisEmIntervalo', billRouter);
 
     app.use('/', notificationRouter);
     app.use('/notificacao/getNotificacoes', notificationRouter);
