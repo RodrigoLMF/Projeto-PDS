@@ -1,8 +1,8 @@
 
 class Bill {
-    constructor(billID, userID, billName, value, type, divide, repeat, numParts, firstPayment, payday) {
-        this.billID = billID;
-        this.userID = userID;
+    constructor(billId, userId, billName, value, type, divide, repeat, numParts, firstPayment, payday) {
+        this.billId = billId;
+        this.userId = userId;
         this.name = billName;
         this.value = value;
         this.type = type;
