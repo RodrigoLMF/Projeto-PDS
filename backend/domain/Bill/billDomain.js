@@ -73,7 +73,7 @@ function registerBill(userId, billName, value, type, divide, repeat, numParts, f
         for (let i = 0; i < billList.length; i++) {
 
             repository.add(billList[i]).then((result) => {
-                //newBill.setId = result.id
+                newBill.setId = result
                 resolve({ message: 'Conta cadastrada com sucesso!' });
             }).catch((err) => {
                 console.log("Erro ao cadastrar conta:", err);
