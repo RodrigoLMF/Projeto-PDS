@@ -29,27 +29,33 @@ const add = async (bill) => {
         const [query] = await connection.execute(`INSERT INTO BILL (USER_ID, BILL_NAME, BILL_VALUE, 
             BILL_TYPE, BILL_DIVIDE, BILL_REPEAT, BILL_NUM_PARTs, BILL_FIRST_PAYMENT, BILL_PAYDAY)
             VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )`, [bill.userId, bill.name, bill.value, bill.type,
-            bill.divide, bill.repeat, bill.numParts, firstPayment, payday]);
+        bill.divide, bill.repeat, bill.numParts, firstPayment, payday]);
 
         return query.insertId;
 
     } catch (error) {
-        console.error('Erro ao buscar as contas:', error);
+        console.error('Erro ao cadastrar a conta:', error);
         throw error;
     }
 };
 
 const payBill = async (billId) => {
-    const [query] = await connection.execute(`UPDATE BILL SET BILL_TYPE = 'P' WHERE BILL_ID = (?)`, [billId]);
-    return query;
+    try {
+        const [query] = await connection.execute(`UPDATE BILL SET BILL_TYPE = 'P' WHERE BILL_ID = (?)`, [billId]);
+        return null;
+
+    } catch (error) {
+        console.error('Erro ao quitar a conta:', error);
+        throw error;
+    }
 };
 
 const getAllBillsByUserId = async (userId) => {
     try {
         const [rows] = await connection.execute(`SELECT * FROM BILL WHERE USER_ID = ?`, [userId]);
-
         billList = createBillList(rows);
         return billList;
+        
     } catch (error) {
         console.error('Erro ao buscar as contas:', error);
         throw error;
