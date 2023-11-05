@@ -52,9 +52,9 @@ function repeatBill(bill) {
     return billList;
 }
 
-function registerBill(userID, billName, value, type, divide, repeat, numParts, firstPayment, payday) {
+function registerBill(userId, billName, value, type, divide, repeat, numParts, firstPayment, payday) {
 
-    newBill = new Bill(0, userID, billName, value, type, divide, repeat, numParts, firstPayment, payday)
+    newBill = new Bill(0, userId, billName, value, type, divide, repeat, numParts, firstPayment, payday)
     verifyValue(newBill);
 
     let billList;
@@ -96,7 +96,7 @@ function payBill(billId) {
     });
 }
 
-function getAllBills(userId){
+function getAllBills(userId) {
     return new Promise((resolve, reject) => {
         repository.getAllBillsByUserId(userId).then((bills) => {
             resolve(bills);
@@ -115,82 +115,82 @@ function getBillsWithinPeriod(userId, startDate, endDate) {
             console.error("Erro ao buscar contas:", err);
             reject(new Error('Erro ao buscar contas. Por favor, tente novamente mais tarde.'));
         });
-    }); 
+    });
 }
 
 function getParcialBalanceAll(userId, type) {
     return new Promise((resolve, reject) => {
-      getAllBills(userId) // Chama a função para obter todas as contas
-        .then((bills) => {
-          // Filtra as contas
-          const parcialBills = bills.filter((bill) => bill.type === type);
-          
-          // Calcula o somatório dos valores das contas positivas
-          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
-          
-          resolve(sum); // Retorna o somatório
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar e calcular contas parciais:', error);
-          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
-        });
+        getAllBills(userId) // Chama a função para obter todas as contas
+            .then((bills) => {
+                // Filtra as contas
+                const parcialBills = bills.filter((bill) => bill.type === type);
+
+                // Calcula o somatório dos valores das contas positivas
+                const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
+
+                resolve(sum); // Retorna o somatório
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar e calcular contas parciais:', error);
+                reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
+            });
     });
 }
 
 function getParcialBalanceWithinPeriod(userId, type, startDate, endDate) {
     return new Promise((resolve, reject) => {
-      getBillsWithinPeriod(userId, startDate, endDate) // Chama a função para obter as contas dentro do período
-        .then((bills) => {
-          // Filtra as contas pelo tipo especificado
-          const parcialBills = bills.filter((bill) => bill.type === type);
-  
-          // Calcula o somatório dos valores das contas parciais
-          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
-  
-          resolve(sum); // Retorna o somatório
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar e calcular contas parciais:', error);
-          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
-        });
+        getBillsWithinPeriod(userId, startDate, endDate) // Chama a função para obter as contas dentro do período
+            .then((bills) => {
+                // Filtra as contas pelo tipo especificado
+                const parcialBills = bills.filter((bill) => bill.type === type);
+
+                // Calcula o somatório dos valores das contas parciais
+                const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
+
+                resolve(sum); // Retorna o somatório
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar e calcular contas parciais:', error);
+                reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
+            });
     });
-  }
+}
 
 function getTotalBalanceAll(userId) {
     return new Promise((resolve, reject) => {
-      getAllBills(userId) // Chama a função para obter todas as contas
-        .then((bills) => {
-          // Filtra as contas 
-          const parcialBills = bills.filter((bill) => bill.type === 'G' || bill.type === 'D');
-          
-          // Calcula o somatório dos valores das contas positivas
-          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
-          
-          resolve(sum); // Retorna o somatório
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar e calcular contas parciais:', error);
-          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
-        });
+        getAllBills(userId) // Chama a função para obter todas as contas
+            .then((bills) => {
+                // Filtra as contas 
+                const parcialBills = bills.filter((bill) => bill.type === 'G' || bill.type === 'D');
+
+                // Calcula o somatório dos valores das contas positivas
+                const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
+
+                resolve(sum); // Retorna o somatório
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar e calcular contas parciais:', error);
+                reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
+            });
     });
 }
 
 function getTotalBalanceWithinPeriod(userId, startDate, endDate) {
     return new Promise((resolve, reject) => {
         getBillsWithinPeriod(userId, startDate, endDate) // Chama a função para obter todas as contas
-        .then((bills) => {
-          // Filtra as contas 
-          const parcialBills = bills.filter((bill) => bill.type === 'G' || bill.type === 'D');
-          
-          // Calcula o somatório dos valores das contas positivas
-          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
-          
-          resolve(sum); // Retorna o somatório
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar e calcular contas parciais:', error);
-          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
-        });
+            .then((bills) => {
+                // Filtra as contas 
+                const parcialBills = bills.filter((bill) => bill.type === 'G' || bill.type === 'D');
+
+                // Calcula o somatório dos valores das contas positivas
+                const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
+
+                resolve(sum); // Retorna o somatório
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar e calcular contas parciais:', error);
+                reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
+            });
     });
 }
 

@@ -19,8 +19,8 @@ class Bill {
 
     clone() {
         return new Bill(
-            this.billID,
-            this.userID,
+            this.billId,
+            this.userId,
             this.name,
             this.value,
             this.type,

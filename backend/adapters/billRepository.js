@@ -24,10 +24,9 @@ const add = async (bill) => {
     // Converte data para formato mysql
     firstPayment = bill.firstPayment.toISOString().split('T')[0]
     payday = bill.payday.toISOString().split('T')[0]
-
     const [query] = await connection.execute(`INSERT INTO BILL (USER_ID, BILL_NAME, BILL_VALUE, 
         BILL_TYPE, BILL_DIVIDE, BILL_REPEAT, BILL_NUM_PARTs, BILL_FIRST_PAYMENT, BILL_PAYDAY)
-        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [bill.userID, bill.name, bill.value, bill.type,
+        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )`, [bill.userId, bill.name, bill.value, bill.type,
     bill.divide, bill.repeat, bill.numParts, firstPayment, payday]);
     return query;
 };
@@ -65,23 +64,7 @@ const getBillsWithinPeriod = async (userId, startDate, endDate) => {
     }
 };
 
-// const getBillsIdsWithinPeriod = async (userId, startDate, endDate) => {
-//     getBillsWithinPeriod(userId, startDate, endDate)
-//         .then((billList) => {
-//             let billIds = []
-//             for (let i = 0; i < billList.length; i++) {
-//                 billIds.push(billList[i].billId);
-//             }
-//             console.log(billIds);
-//             return billIds;
-//         }).catch((err) => {
-//             console.error("Erro ao buscar contas:", err);
-//             throw error;
-//         });
-// };
-
 module.exports.add = add;
 module.exports.payBill = payBill;
 module.exports.getAllBillsByUserId = getAllBillsByUserId;
 module.exports.getBillsWithinPeriod = getBillsWithinPeriod;
-// module.exports.getBillsIdsWithinPeriod= getBillsIdsWithinPeriod;
