@@ -49,10 +49,10 @@ router.post('/conta/listarContas', (req, res) => {
         });
 });
 
-router.post('/conta/somatorioContasPositivasAll', (req, res) => {
-    const { userID } = req.body;
+router.post('/conta/somatorioContasParciaisAll', (req, res) => {
+    const { userID, type } = req.body;
   
-    billDomain.getPositiveBalanceAll(userID)
+    billDomain.getPositiveBalanceAll(userID, type)
       .then((sum) => {
         res.status(200).json({ sum });
       })
