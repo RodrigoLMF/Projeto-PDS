@@ -1,6 +1,7 @@
 // Código de domínio (regras de negócio)
 // Totalmente independente de tecnologia
-var User = require('./User.js')
+var User = require('./User.js').User;
+
 var repositorio = null;
 
 function configRepo(repo) {
@@ -12,9 +13,10 @@ function registerUser(login, password) {
         repositorio.find(login)
             .then((result) => {
                 if (result.length === 0) {
-                    var newUser = new User.User(1, login, password);
+                    var newUser = new User(1, login, password);
                     repositorio.add(newUser)
                         .then((result) => {
+                            newUser.id = result;
                             resolve({ message: 'Usuário cadastrado com sucesso!' });
                         })
                         .catch((err) => {
