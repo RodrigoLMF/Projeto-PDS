@@ -118,7 +118,6 @@ function getBillsWithinPeriod(userId, startDate, endDate) {
     }); 
 }
 
-
 function getParcialBalanceAll(userId, type) {
     return new Promise((resolve, reject) => {
       getAllBills(userId) // Chama a função para obter todas as contas
@@ -137,6 +136,25 @@ function getParcialBalanceAll(userId, type) {
         });
     });
 }
+
+function getParcialBalanceWithinPeriod(userId, type, startDate, endDate) {
+    return new Promise((resolve, reject) => {
+      getBillsWithinPeriod(userId, startDate, endDate) // Chama a função para obter as contas dentro do período
+        .then((bills) => {
+          // Filtra as contas pelo tipo especificado
+          const parcialBills = bills.filter((bill) => bill.type === type);
+  
+          // Calcula o somatório dos valores das contas parciais
+          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
+  
+          resolve(sum); // Retorna o somatório
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar e calcular contas parciais:', error);
+          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
+        });
+    });
+  }
 
 function getTotalBalanceAll(userId) {
     return new Promise((resolve, reject) => {
@@ -164,3 +182,4 @@ module.exports.getAllBills = getAllBills;
 module.exports.getParcialBalanceAll = getParcialBalanceAll;
 module.exports.getTotalBalanceAll = getTotalBalanceAll;
 module.exports.getBillsWithinPeriod = getBillsWithinPeriod;
+module.exports.getParcialBalanceWithinPeriod = getParcialBalanceWithinPeriod;
