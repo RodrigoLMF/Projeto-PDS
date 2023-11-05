@@ -5,6 +5,7 @@ const app = express();
 
 const userRouter = require('./userControllers');
 const billRouter = require('./billControllers');
+const notificationRouter = require('./notificationControllers')
 
 function start() {
     //app.use(express.static('public'));
@@ -14,6 +15,8 @@ function start() {
     app.use('/', billRouter);
     app.use('/conta/cadastrarConta', billRouter);
     app.use('/conta/pagarConta', billRouter);
+
+    app.use('/', notificationRouter);
 
     const PORT = 3000;
     app.listen(PORT, '0.0.0.0', () => {
