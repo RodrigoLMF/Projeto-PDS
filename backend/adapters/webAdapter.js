@@ -15,6 +15,7 @@ function start() {
     app.use('/', billRouter);
     app.use('/conta/cadastrarConta', billRouter);
     app.use('/conta/pagarConta', billRouter);
+    app.use('/conta/listarContas', billRouter);
 
     app.use('/', notificationRouter);
 
