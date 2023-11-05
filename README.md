@@ -125,3 +125,17 @@ O objetivo é isolar o domínio, de forma que ele não fique dependente das outr
 Um dos principios da Arquitetura Hexagonal é a utilização de portas e adaptadores para que o domínio se comunique com as tecnologias. Esses adaptadores garantem o desacoplamento e em casos de mudanças nas tecnologias basta que eles sofram as alterações. Por exemplo, no caso dos testes, se quisermos testar uma função de domínio que faz uma busca no banco de dados, essa busca é mediada por adaptador. Podemos fazer um mock da classe que consulta o banco de dados e usar um adpatador para retornar um resultado para a função testada de forma a continuar os testes.
 
 No nosso sistema essas portas e adaptadores podem ser encontrados dentro da pasta backend/adapters
+
+Um exemplo é descrito a seguir:
+Temos a função a seguir na classe billRepository que consulta o banco de dados para obter as contas do usuário
+
+![repository](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/9656badd-25e8-464b-9e11-6d02646660d8)
+
+Ela é usada pela classe de domínio billDomain
+
+![dominio](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/fbc3d926-2ab7-49f3-9a4e-f5fb8a5d7f3a)
+
+E a classe billController irá enviar o resultado da função para o front-end
+
+
+![controller](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/5af60955-c2bf-4418-8ad9-f63290e1a687)
