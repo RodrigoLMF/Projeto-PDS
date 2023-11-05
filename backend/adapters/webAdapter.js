@@ -17,6 +17,7 @@ function start() {
     app.use('/conta/pagarConta', billRouter);
     app.use('/conta/listarContas', billRouter);
     app.use('/conta/somatorioContasParciaisAll', billRouter);
+    app.use('/conta/somatorioContasTotaisAll', billRouter);
 
     app.use('/', notificationRouter);
 
