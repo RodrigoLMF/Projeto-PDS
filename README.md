@@ -117,6 +117,9 @@ HTML5, CSS3, python, JavaScript, MySQL Workbench, Node.js, Express.js, Balsamiq
 ## Arquitetura Hexagonal
 
 Conforme proposta do trabalho, esse sistema está utilizando uma Arquitetura Hexagonal. Essa arquitetura divide as classes em dois gurpos:
-	- Classes de domínio
- 	- Classes de infraestrutura e tecnologias
+* Classes de domínio
+* Classes de infraestrutura e tecnologias<br/><br/>
+
 O objetivo é isolar o domínio, de forma que ele não fique dependente das outras classes. Dessa forma, essa arquitetura tem como vantagens o desavoplamento desses dois tipos de classes, a melhor testabilidade, a independência da tecnologia que permite adapatar o sistema as suas necessidades (por exemplo, criando uma interface WEB e uma Mobile usando o mesmo domínio) e possíveis evoluções, a melhor manutenibilidade e segurança.
+
+
