@@ -1,9 +1,11 @@
 
 class Notification {
-    constructor(notificationId, userId, description) {
+    constructor(notificationId, userId, billId, description, issueDate) {
         this.notificationId = notificationId;
         this.userId = userId;
+        this.billId = billId;
         this.description = description;
+        this.issueDate = issueDate;
     }
 }
 
