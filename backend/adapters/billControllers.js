@@ -36,4 +36,15 @@ router.post('/conta/quitarConta', (req, res) => {
         });
 });
 
+router.post('/conta/listarContas', (req, res) => {
+    billDomain.getAllBillsByUserId(userID)
+        .then(bills => {
+            res.status(200).json({ bills });
+        })
+        .catch(error => {
+            console.error('Erro ao listar contas:', error);
+            res.status(500).json({ message: 'Erro ao listar contas. Por favor, tente novamente mais tarde.' });
+        });
+});
+
 module.exports = router;
