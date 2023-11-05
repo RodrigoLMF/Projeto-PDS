@@ -17,5 +17,16 @@ const payBill = async (billId) => {
     return query;
 }
 
+const getAllBillsByUserId = async (userId) => {
+    try {
+      const [rows] = await connection.execute(`SELECT * FROM BILL WHERE USER_ID = ?`, [userId]);
+      return rows;
+    } catch (error) {
+      console.error('Erro ao buscar as contas:', error);
+      throw error;
+    }
+  };
+
 module.exports.add = add;
 module.exports.payBill = payBill;
+module.exports.getAllBillsByUserId = getAllBillsByUserId;
