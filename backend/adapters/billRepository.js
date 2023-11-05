@@ -39,7 +39,9 @@ const payBill = async (billId) => {
 const getAllBillsByUserId = async (userId) => {
     try {
         const [rows] = await connection.execute(`SELECT * FROM BILL WHERE USER_ID = ?`, [userId]);
-        return rows;
+        
+        billList = createBillList(rows);
+        return billList;
     } catch (error) {
         console.error('Erro ao buscar as contas:', error);
         throw error;
