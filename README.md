@@ -122,4 +122,6 @@ Conforme proposta do trabalho, esse sistema está utilizando uma Arquitetura Hex
 
 O objetivo é isolar o domínio, de forma que ele não fique dependente das outras classes. Dessa forma, essa arquitetura tem como vantagens o desavoplamento desses dois tipos de classes, a melhor testabilidade, a independência da tecnologia que permite adapatar o sistema as suas necessidades (por exemplo, criando uma interface WEB e uma Mobile usando o mesmo domínio) e possíveis evoluções, a melhor manutenibilidade e segurança.
 
+Um dos principios da Arquitetura Hexagonal é a utilização de portas e adaptadores para que o domínio se comunique com as tecnologias. Esses adaptadores garantem o desacoplamento e em casos de mudanças nas tecnologias basta que eles sofram as alterações. Por exemplo, no caso dos testes, se quisermos testar uma função de domínio que faz uma busca no banco de dados, essa busca é mediada por adaptador. Podemos fazer um mock da classe que consulta o banco de dados e usar um adpatador para retornar um resultado para a função testada de forma a continuar os testes.
 
+No nosso sistema essas portas e adaptadores podem ser encontrados dentro da pasta backend/adapters
