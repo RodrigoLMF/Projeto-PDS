@@ -72,18 +72,30 @@ function registerBill(userID, billName, value, type, divide, repeat, numParts, f
 
         for (let i = 0; i < billList.length; i++) {
 
-            // repository.add(billList[i]).then((result) => {
-            //     //newBill.setId = result.id
-            //     resolve({ message: 'Usuário cadastrado com sucesso!' });
-            // }).catch((err) => {
-            //     console.log("Erro ao cadastrar conta:", err);
-            //     reject(new Error('Erro ao cadastrar conta. Por favor, tente novamente mais tarde.'));
-            // });
+            repository.add(billList[i]).then((result) => {
+                //newBill.setId = result.id
+                resolve({ message: 'Conta cadastrada com sucesso!' });
+            }).catch((err) => {
+                console.log("Erro ao cadastrar conta:", err);
+                reject(new Error('Erro ao cadastrar conta. Por favor, tente novamente mais tarde.'));
+            });
+
         }
 
     });
 }
 
+function payBill(billId) {
+    return new Promise((resolve, reject) => {
+        repository.payBill(billId).then((result) => {
+            resolve({ message: 'Conta quitada com sucesso!' });
+        }).catch((err) => {
+            console.log("Erro ao quitar conta:", err);
+            reject(new Error('Erro ao quitar conta. Por favor, tente novamente mais tarde.'));
+        });
+    });
+}
 
 module.exports.configRepo = configRepo;
 module.exports.registerBill = registerBill;
+module.exports.payBill = payBill;
