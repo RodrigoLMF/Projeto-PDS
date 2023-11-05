@@ -96,6 +96,18 @@ function payBill(billId) {
     });
 }
 
+function getAllBills(userId){
+    return new Promise((resolve, reject) => {
+        repository.getAllBillsByUserId(userId).then((bills) => {
+            resolve(bills);
+        }).catch((err) => {
+            console.error("Erro ao buscar contas:", err);
+            reject(new Error('Erro ao buscar contas. Por favor, tente novamente mais tarde.'));
+        });
+    });
+}
+
 module.exports.configRepo = configRepo;
 module.exports.registerBill = registerBill;
 module.exports.payBill = payBill;
+module.exports.getAllBills = getAllBills;
