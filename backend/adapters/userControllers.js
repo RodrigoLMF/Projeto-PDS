@@ -19,5 +19,21 @@ router.post('/cadastrarUsuario', (req, res) => {
         });
 });
 
+router.post('/login', (req, res) => {
+    const { login, password } = req.body;
+
+    userDomain.authenticateUser(login, password)
+        .then(user => {
+            if (user) {
+                res.status(200).json({ message: 'Login bem-sucedido' });
+            } else {
+                res.status(401).json({ message: 'Credenciais inválidas' });
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao autenticar usuário:', error);
+            res.status(500).json({ message: 'Erro ao autenticar usuário' });
+        });
+});
 
 module.exports = router;

@@ -32,6 +32,28 @@ function registerUser(login, password) {
     });
 }
 
+function authenticateUser(login, password) {
+    return new Promise((resolve, reject) => {
+        userRepository.find(login)
+            .then(users => {
+                if (users.length > 0) {
+                    const user = users[0];
+                    if (user.password === password) {
+                        resolve(new User.User(user.id, user.login, user.password));
+                    } else {
+                        resolve(null);
+                    }
+                } else {
+                    resolve(null);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar usuário no banco de dados:', error);
+                reject(error);
+            });
+    });
+}
 
+module.exports.authenticateUser = authenticateUser;
 module.exports.registerUser = registerUser;
 module.exports.configRepo = configRepo;
