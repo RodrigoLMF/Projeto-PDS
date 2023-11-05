@@ -1,10 +1,11 @@
 // Configuração das rotas que pertencem à entidade Usuario.
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const userDomain = require('../domain/User/userDomain.js');
 
 router.get('/', (req, res) => {
-    res.send("Página principal do painel usuario")
+    res.sendFile(path.join(__dirname, '../../index.html'));
 });
 
 router.post('/cadastrarUsuario', (req, res) => {
