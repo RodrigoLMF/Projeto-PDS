@@ -175,6 +175,25 @@ function getTotalBalanceAll(userId) {
     });
 }
 
+function getTotalBalanceWithinPeriod(userId, startDate, endDate) {
+    return new Promise((resolve, reject) => {
+        getBillsWithinPeriod(userId, startDate, endDate) // Chama a função para obter todas as contas
+        .then((bills) => {
+          // Filtra as contas 
+          const parcialBills = bills.filter((bill) => bill.type === 'G' || bill.type === 'D');
+          
+          // Calcula o somatório dos valores das contas positivas
+          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
+          
+          resolve(sum); // Retorna o somatório
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar e calcular contas parciais:', error);
+          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
+        });
+    });
+}
+
 module.exports.configRepo = configRepo;
 module.exports.registerBill = registerBill;
 module.exports.payBill = payBill;
@@ -183,3 +202,4 @@ module.exports.getParcialBalanceAll = getParcialBalanceAll;
 module.exports.getTotalBalanceAll = getTotalBalanceAll;
 module.exports.getBillsWithinPeriod = getBillsWithinPeriod;
 module.exports.getParcialBalanceWithinPeriod = getParcialBalanceWithinPeriod;
+module.exports.getTotalBalanceWithinPeriod = getTotalBalanceWithinPeriod;
