@@ -18,6 +18,8 @@ function start() {
     app.use('/conta/listarContas', billRouter);
     app.use('/conta/somatorioContasParciaisAll', billRouter);
     app.use('/conta/somatorioContasTotaisAll', billRouter);
+    app.use('/conta/listarContasEmIntervalo', billRouter);
+    app.use('/conta/somatorioContasParciaisEmIntervalo', billRouter);
 
     app.use('/', notificationRouter);
     app.use('/notificacao/getNotificacoes', notificationRouter);
