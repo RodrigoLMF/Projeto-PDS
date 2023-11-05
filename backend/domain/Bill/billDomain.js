@@ -111,8 +111,27 @@ function getParcialBalanceAll(userId, type) {
     return new Promise((resolve, reject) => {
       getAllBills(userId) // Chama a função para obter todas as contas
         .then((bills) => {
-          // Filtra as contas onde o "type" é igual a "G" (positivo)
+          // Filtra as contas
           const parcialBills = bills.filter((bill) => bill.type === type);
+          
+          // Calcula o somatório dos valores das contas positivas
+          const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
+          
+          resolve(sum); // Retorna o somatório
+        })
+        .catch((error) => {
+          console.error('Erro ao buscar e calcular contas parciais:', error);
+          reject(new Error('Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.'));
+        });
+    });
+}
+
+function getTotalBalanceAll(userId) {
+    return new Promise((resolve, reject) => {
+      getAllBills(userId) // Chama a função para obter todas as contas
+        .then((bills) => {
+          // Filtra as contas 
+          const parcialBills = bills.filter((bill) => bill.type === 'G' || bill.type === 'D');
           
           // Calcula o somatório dos valores das contas positivas
           const sum = parcialBills.reduce((total, bill) => total + bill.value, 0);
@@ -131,3 +150,4 @@ module.exports.registerBill = registerBill;
 module.exports.payBill = payBill;
 module.exports.getAllBills = getAllBills;
 module.exports.getParcialBalanceAll = getParcialBalanceAll;
+module.exports.getTotalBalanceAll = getTotalBalanceAll;
