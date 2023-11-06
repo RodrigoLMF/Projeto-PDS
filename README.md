@@ -118,13 +118,15 @@ HTML5, CSS3, python, JavaScript, MySQL Workbench, Node.js, Express.js, Balsamiq
 
 Conforme proposta do trabalho, esse sistema está utilizando uma Arquitetura Hexagonal. Essa arquitetura divide as classes em dois gurpos:
 * Classes de domínio
-* Classes de infraestrutura e tecnologias<br/><br/>
+* Classes de infraestrutura e tecnologias <br/><br/>
 
-O objetivo é isolar o domínio, de forma que ele não fique dependente das outras classes. Dessa forma, essa arquitetura tem como vantagens o desavoplamento desses dois tipos de classes, a melhor testabilidade, a independência da tecnologia que permite adapatar o sistema as suas necessidades (por exemplo, criando uma interface WEB e uma Mobile usando o mesmo domínio) e possíveis evoluções, a melhor manutenibilidade e segurança.
+O objetivo é isolar o domínio, de forma que ele não fique dependente das outras classes. Dessa forma, essa arquitetura tem como vantagens o desacoplamento desses dois tipos de classes, a melhor testabilidade, a independência da tecnologia que permite adapatar o sistema às suas necessidades (por exemplo, criando uma interface WEB e uma Mobile usando o mesmo domínio) e possíveis evoluções, a melhor manutenibilidade e segurança.
 
-Um dos principios da Arquitetura Hexagonal é a utilização de portas e adaptadores para que o domínio se comunique com as tecnologias. Esses adaptadores garantem o desacoplamento e em casos de mudanças nas tecnologias basta que eles sofram as alterações. Por exemplo, no caso dos testes, se quisermos testar uma função de domínio que faz uma busca no banco de dados, essa busca é mediada por adaptador. Podemos fazer um mock da classe que consulta o banco de dados e usar um adpatador para retornar um resultado para a função testada de forma a continuar os testes.
+Um dos princípios da Arquitetura Hexagonal é a utilização de portas e adaptadores para que o domínio se comunique com as tecnologias. Esses adaptadores garantem o desacoplamento e em casos de mudanças nas tecnologias basta que eles sofram as alterações. Por exemplo, no caso dos testes, se quisermos testar uma função de domínio que faz uma busca no banco de dados, essa busca é mediada por adaptador. Podemos fazer um mock da classe que consulta o banco de dados e usar um adpatador para retornar um resultado para a função testada de forma a continuar os testes.
 
-No nosso sistema essas portas e adaptadores podem ser encontrados dentro da pasta backend/adapters
+No nosso sistema os adaptadores podem ser encontrados dentro da pasta backend/adapters. Os controllers são os adaptadores para o frontend e os repositorys são adaptadores para o banco de dados. 
+
+Já as portas são definifidas dentro da pasta backend/dominio. Cada entidade possui um arquivo com o nome da entidade, que define a classe correspondente à entidade, e um arquivo com as funções de domínio que definem as portas de entrada e saída. As funções chamadas configRepo são as portas de saída, ou seja, simulam uma interface com o banco de dados. As demais funções são portas de entradas, e simulam as interfaces com o front end. Vale lembrar que em javascript não há Interfaces propriamente ditas, mas estas portas simulam bem o seu papel, além de serem completamente livres de tecnologias.  
 
 Um exemplo é descrito a seguir:
 Temos a função a seguir na classe billRepository que consulta o banco de dados para obter as contas do usuário
@@ -136,6 +138,5 @@ Ela é usada pela classe de domínio billDomain
 ![dominio](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/fbc3d926-2ab7-49f3-9a4e-f5fb8a5d7f3a)
 
 E a classe billController irá enviar o resultado da função para o front-end
-
 
 ![controller](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/5af60955-c2bf-4418-8ad9-f63290e1a687)
