@@ -1,7 +1,6 @@
-//const userDomain = require('../domain/User/userDomain.js');
-//const billDomain = require('../domain/Bill/billDomain.js');
 const express = require('express');
 const app = express();
+
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
@@ -10,14 +9,16 @@ const billRouter = require('./billControllers');
 const notificationRouter = require('./notificationControllers')
 
 function start() {
-    //app.use(express.static('public'));
+    app.use(express.static(__dirname + '../../'));
+
     app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
         extended: true
     }));
-    app.use(cors())
+    app.use(cors());
 
     app.use('/', userRouter);
     app.use('/cadastrarUsuario', userRouter);
+    app.use('/login', userRouter);
 
     app.use('/', billRouter);
     app.use('/conta/cadastrarConta', billRouter);
