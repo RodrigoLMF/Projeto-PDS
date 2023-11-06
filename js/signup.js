@@ -17,7 +17,7 @@ document.getElementById("btnCadastrar").addEventListener("click", function() {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        alert(data.message); 
+        alert('Usuário cadastrado com sucesso!'); 
         window.location.href = 'html/homepage.html'; 
     })
     .catch(error => {
