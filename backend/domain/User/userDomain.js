@@ -2,19 +2,19 @@
 // Totalmente independente de tecnologia
 var User = require('./User.js').User;
 
-var repositorio = null;
+var repository = null;
 
 function configRepo(repo) {
-    repositorio = repo;
+    repository = repo;
 }
 
 function registerUser(login, password) {
     return new Promise((resolve, reject) => {
-        repositorio.find(login)
+        repository.find(login)
             .then((result) => {
                 if (result.length === 0) {
                     var newUser = new User(1, login, password);
-                    repositorio.add(newUser)
+                    repository.add(newUser)
                         .then((result) => {
                             newUser.id = result;
                             resolve({ message: 'Usuário cadastrado com sucesso!' });
@@ -36,12 +36,12 @@ function registerUser(login, password) {
 
 function authenticateUser(login, password) {
     return new Promise((resolve, reject) => {
-        userRepository.find(login)
+        repository.find(login)
             .then(users => {
                 if (users.length > 0) {
                     const user = users[0];
                     if (user.password === password) {
-                        resolve(new User.User(user.id, user.login, user.password));
+                        resolve(new User(user.id, user.login, user.password));
                     } else {
                         resolve(null);
                     }
