@@ -199,6 +199,50 @@
             </div>
          </div>
       </div>
+      <div class="modal fade" id="cadastroContaForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLongTitle">Adicionar Conta</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <div class="form-group">
+                 <label for="nome">Nome:</label>
+                 <input type="text" class="form-control custom-input" id="nome" placeholder="Nome da conta" required>
+               </div>
+               <div class="form-group">
+                 <label for="valor">Valor:</label>
+                 <input type="number" class="form-control custom-input" id="valor" placeholder="Valor da conta" required>
+               </div>
+               <div class="form-group">
+                 <label for="data">Data:</label>
+                 <input type="date" class="form-control custom-input" id="data" required>
+               </div>
+               <div class="form-group">
+                 <label for="tipo">Tipo:</label>
+                 <select class="form-control custom-input" id="tipo">
+                   <option value="ganho">Ganho</option>
+                   <option value="debito">Débito</option>
+                 </select>
+               </div>
+               <div class="form-group">
+                 <label for="parcelado">Parcelado:</label>
+                 <select class="form-control custom-input" id="parcelado">
+                   <option value="sim">Sim</option>
+                   <option value="nao">Não</option>
+                 </select>
+               </div>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="bg-primary iq-sign-btn" data-dismiss="modal">Fechar</button>
+               <button type="button" class="bg-primary iq-sign-btn" onclick="adicionarConta()">Salvar</button>
+             </div>
+           </div>
+         </div>
+       </div>       
       <footer class="iq-footer">
          <div class="container-fluid">
             <div class="row">
