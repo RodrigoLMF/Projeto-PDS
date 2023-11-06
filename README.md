@@ -129,14 +129,27 @@ No nosso sistema os adaptadores podem ser encontrados dentro da pasta backend/ad
 Já as portas são definifidas dentro da pasta backend/dominio. Cada entidade possui um arquivo com o nome da entidade, que define a classe correspondente à entidade, e um arquivo com as funções de domínio que definem as portas de entrada e saída. As funções chamadas configRepo são as portas de saída, ou seja, simulam uma interface com o banco de dados. As demais funções são portas de entradas, e simulam as interfaces com o front end. Vale lembrar que em javascript não há Interfaces propriamente ditas, mas estas portas simulam bem o seu papel, além de serem completamente livres de tecnologias.  
 
 Um exemplo é descrito a seguir:
-Temos a função a seguir na classe billRepository que consulta o banco de dados para obter as contas do usuário
 
-![repository](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/9656badd-25e8-464b-9e11-6d02646660d8)
+A rota definida no arquivo billController irá receber os dados do front-end, chamar a porta de entrada mostrada acima e enviar o resultado de volta para o front-end. Esta rota é um adaptador do front-end. 
 
-Ela é usada pela classe de domínio billDomain
+![controller](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/5af60955-c2bf-4418-8ad9-f63290e1a687)
+
+A função chamada pelo adaptador é definida no arquivo billDomain e é uma porta de entrada. Ela recebe os dados passados pelo adaptador e acessa a função do repositório a partir de uma porta de saída. 
 
 ![dominio](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/fbc3d926-2ab7-49f3-9a4e-f5fb8a5d7f3a)
 
-E a classe billController irá enviar o resultado da função para o front-end
+A porta de saída é definida como abaixo. Primeiro declaramos uma variável global que armazenará o repositório. Então, na função configRepo recebemos e definimos o repositório usado. 
 
-![controller](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/5af60955-c2bf-4418-8ad9-f63290e1a687)
+![image](https://github.com/RodrigoLMF/Projeto-PDS/assets/84359413/e47229ad-69d7-4ec0-a8f3-365e19a51522)
+
+O repositório em si é passado pelo arquivo principal do backend, index.js. 
+
+![image](https://github.com/RodrigoLMF/Projeto-PDS/assets/84359413/fd1a05bd-075b-4205-b41b-3e0462b38a35)
+
+
+Por fim, temos a função a seguir na classe billRepository que consulta o banco de dados para obter as contas do usuário. Ela é um adaptador. Note que ela não retorna diretamente o resultado obtido a partir da pesquisa no banco de dados, pois isso tornaria o domínio dependente da tecnologia usada no banco de dados. Em vez disso, ela chama uma função que transforma o resultado obtido pela busca em uma lista de objetos do tipo Bill, definido pelo domínio. 
+
+![repository](https://github.com/RodrigoLMF/Projeto-PDS/assets/18338749/9656badd-25e8-464b-9e11-6d02646660d8)
+
+
+
