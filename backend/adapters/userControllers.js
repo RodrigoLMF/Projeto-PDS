@@ -21,7 +21,10 @@ router.post('/cadastrarUsuario', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    const { login, password } = req.body;
+    
+    //const { login, password } = req.body;
+    login = req.body.login
+    password = req.body.senha
 
     userDomain.authenticateUser(login, password)
         .then(user => {
