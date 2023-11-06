@@ -2,6 +2,8 @@
 //const billDomain = require('../domain/Bill/billDomain.js');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const userRouter = require('./userControllers');
 const billRouter = require('./billControllers');
@@ -9,9 +11,14 @@ const notificationRouter = require('./notificationControllers')
 
 function start() {
     //app.use(express.static('public'));
+    app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+        extended: true
+    }));
+    app.use(cors())
+
     app.use('/', userRouter);
     app.use('/cadastrarUsuario', userRouter);
-    
+
     app.use('/', billRouter);
     app.use('/conta/cadastrarConta', billRouter);
     app.use('/conta/pagarConta', billRouter);
@@ -27,7 +34,7 @@ function start() {
 
     const PORT = 3000;
     app.listen(PORT, '0.0.0.0', () => {
-        console.log('Servidor rodando na porta '+PORT)
+        console.log('Servidor rodando na porta ' + PORT)
     });
 }
 

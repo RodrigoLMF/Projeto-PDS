@@ -9,7 +9,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/cadastrarUsuario', (req, res) => {
-    const { login, password } = req.body;
+    
+    login = req.body.login
+    password = req.body.senha
+
     userDomain.registerUser(login, password)
         .then(result => {
             res.status(200).json({ message: 'Usuário cadastrado com sucesso!' });
@@ -21,7 +24,10 @@ router.post('/cadastrarUsuario', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    const { login, password } = req.body;
+    
+    //const { login, password } = req.body;
+    login = req.body.login
+    password = req.body.senha
 
     userDomain.authenticateUser(login, password)
         .then(user => {
