@@ -10,7 +10,7 @@ jest.mock('../adapters/billRepository.js', () => {
   };
 });
 
-describe('billDomain functions', () => {
+describe('billDomain registerBill', () => {
     let userRepository;
     let newBill;
   
@@ -57,7 +57,7 @@ describe('billDomain functions', () => {
     });
   });
 
-  describe('billDomain functions', () => {
+  describe('billDomain payBill', () => {
     let userRepository;
     let bill;
   
@@ -88,7 +88,7 @@ describe('billDomain functions', () => {
     });
   });
 
-  describe('billDomain functions', () => {
+  describe('billDomain getAllBillsByUserId', () => {
     let userRepository;
   
     beforeEach(() => {
@@ -121,4 +121,45 @@ describe('billDomain functions', () => {
       await expect(billDomain.getAllBills(userId)).rejects.toThrow(errorMessage);
       expect(userRepository.getAllBillsByUserId).toHaveBeenCalledWith(userId);
     });
+  });
+
+  describe('billDomain getBillsWithinPeriod', () => {
+    let userRepository;
+  
+    beforeEach(() => {
+      userRepository = {
+        getBillsWithinPeriod: jest.fn(),
+      };
+      billDomain.configRepo(userRepository);
+    });
+  
+    test('Deve obter contas dentro do período com sucesso', async () => {
+      const userId = 1;
+      const startDate = new Date('2023-01-01');
+      const endDate = new Date('2023-01-31');
+      const mockBills = [
+        new Bill(1, userId, 'Conta de Luz', 100, 'fixa', false, true, 3, new Date('2023-01-05'), new Date('2023-01-10')),
+        // Adicione mais contas conforme necessário
+      ];
+  
+      userRepository.getBillsWithinPeriod.mockResolvedValue(mockBills);
+  
+      const result = await billDomain.getBillsWithinPeriod(userId, startDate, endDate);
+  
+      expect(result).toEqual(mockBills);
+      expect(userRepository.getBillsWithinPeriod).toHaveBeenCalledWith(userId, startDate, endDate);
+    });
+  
+    test('Deve lidar com erro ao obter contas dentro do período', async () => {
+      const userId = 1;
+      const startDate = new Date('2023-01-01');
+      const endDate = new Date('2023-01-31');
+      const errorMessage = 'Erro ao buscar contas. Por favor, tente novamente mais tarde.';
+      userRepository.getBillsWithinPeriod.mockRejectedValue(new Error(errorMessage));
+  
+      await expect(billDomain.getBillsWithinPeriod(userId, startDate, endDate)).rejects.toThrow(errorMessage);
+      expect(userRepository.getBillsWithinPeriod).toHaveBeenCalledWith(userId, startDate, endDate);
+    });
+  
+    // Adicione mais testes conforme necessário
   });
