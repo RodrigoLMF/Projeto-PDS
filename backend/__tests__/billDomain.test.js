@@ -55,6 +55,70 @@ describe('billDomain functions', () => {
       expect(result).toEqual({ message: 'Conta cadastrada com sucesso!' });
       expect(userRepository.add).toHaveBeenCalledTimes(2);
     });
+  });
+
+  describe('billDomain functions', () => {
+    let userRepository;
+    let bill;
   
-    // Adicione mais testes conforme necessário
+    beforeEach(() => {
+      userRepository = {
+        payBill: jest.fn(),
+      };
+      billDomain.configRepo(userRepository);
+  
+      bill = new Bill(1, 1, 'Conta de Luz', 100, 'fixa', false, true, 3, new Date('2023-01-01'), new Date('2023-01-05'));
+    });
+  
+    test('Deve quitar uma conta com sucesso', async () => {
+      userRepository.payBill.mockResolvedValue(true);
+  
+      const result = await billDomain.payBill(1);
+  
+      expect(result).toEqual({ message: 'Conta quitada com sucesso!' });
+      expect(userRepository.payBill).toHaveBeenCalledWith(1);
+    });
+  
+    test('Deve lidar com erro ao quitar conta', async () => {
+      const errorMessage = 'Erro ao quitar conta. Por favor, tente novamente mais tarde.';
+      userRepository.payBill.mockRejectedValue(new Error(errorMessage));
+  
+      await expect(billDomain.payBill(1)).rejects.toThrow(errorMessage);
+      expect(userRepository.payBill).toHaveBeenCalledWith(1);
+    });
+  });
+
+  describe('billDomain functions', () => {
+    let userRepository;
+  
+    beforeEach(() => {
+      userRepository = {
+        getAllBillsByUserId: jest.fn(),
+      };
+      billDomain.configRepo(userRepository);
+    });
+  
+    test('Deve obter todas as contas com sucesso', async () => {
+      const userId = 1;
+      const mockBills = [
+        new Bill(1, userId, 'Conta de Luz', 100, 'fixa', false, true, 3, new Date('2023-01-01'), new Date('2023-01-05')),
+        // Adicione mais contas conforme necessário
+      ];
+  
+      userRepository.getAllBillsByUserId.mockResolvedValue(mockBills);
+  
+      const result = await billDomain.getAllBills(userId);
+  
+      expect(result).toEqual(mockBills);
+      expect(userRepository.getAllBillsByUserId).toHaveBeenCalledWith(userId);
+    });
+  
+    test('Deve lidar com erro ao obter contas', async () => {
+      const userId = 1;
+      const errorMessage = 'Erro ao buscar contas. Por favor, tente novamente mais tarde.';
+      userRepository.getAllBillsByUserId.mockRejectedValue(new Error(errorMessage));
+  
+      await expect(billDomain.getAllBills(userId)).rejects.toThrow(errorMessage);
+      expect(userRepository.getAllBillsByUserId).toHaveBeenCalledWith(userId);
+    });
   });
