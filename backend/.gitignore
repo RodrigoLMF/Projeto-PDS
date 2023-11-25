@@ -17,3 +17,6 @@ npm-debug.log*
 
 # Ignorar pasta coverage
 coverage/
+
+# Ignorar pasta coverage
+node_modules/
