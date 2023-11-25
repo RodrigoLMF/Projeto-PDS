@@ -16,7 +16,8 @@ logs
 npm-debug.log*
 
 # Ignorar pasta coverage
-coverage/
+backend/coverage/
 
 # Ignorar pasta coverage
 node_modules/
+backend/node_modules/
