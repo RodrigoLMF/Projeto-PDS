@@ -102,7 +102,6 @@ describe('billDomain registerBill', () => {
       const userId = 1;
       const mockBills = [
         new Bill(1, userId, 'Conta de Luz', 100, 'fixa', false, true, 3, new Date('2023-01-01'), new Date('2023-01-05')),
-        // Adicione mais contas conforme necessário
       ];
   
       userRepository.getAllBillsByUserId.mockResolvedValue(mockBills);
@@ -139,7 +138,6 @@ describe('billDomain registerBill', () => {
       const endDate = new Date('2023-01-31');
       const mockBills = [
         new Bill(1, userId, 'Conta de Luz', 100, 'fixa', false, true, 3, new Date('2023-01-05'), new Date('2023-01-10')),
-        // Adicione mais contas conforme necessário
       ];
   
       userRepository.getBillsWithinPeriod.mockResolvedValue(mockBills);
@@ -160,6 +158,42 @@ describe('billDomain registerBill', () => {
       await expect(billDomain.getBillsWithinPeriod(userId, startDate, endDate)).rejects.toThrow(errorMessage);
       expect(userRepository.getBillsWithinPeriod).toHaveBeenCalledWith(userId, startDate, endDate);
     });
+  });
+
+  describe('billDomain getParcialBalanceAll', () => {
+    let userRepository;
   
-    // Adicione mais testes conforme necessário
+    beforeEach(() => {
+      userRepository = {
+        getAllBillsByUserId: jest.fn(),
+      };
+      billDomain.configRepo(userRepository);
+    });
+  
+    test('Deve obter somatório de contas do tipo específico com sucesso', async () => {
+      const userId = 1;
+      const type = 'fixa';
+      const mockBills = [
+        new Bill(1, userId, 'Conta de Luz', 100, 'fixa', false, true, 3, new Date('2023-01-01'), new Date('2023-01-05')),
+        new Bill(2, userId, 'Conta de Água', 50, 'fixa', false, true, 3, new Date('2023-01-01'), new Date('2023-01-05')),
+        new Bill(3, userId, 'Conta de Internet', 80, 'variavel', false, true, 3, new Date('2023-01-01'), new Date('2023-01-05')),
+      ];
+  
+      userRepository.getAllBillsByUserId.mockResolvedValue(mockBills);
+  
+      const result = await billDomain.getParcialBalanceAll(userId, type);
+  
+      expect(result).toEqual(150); // Soma de Conta de Luz (100) + Conta de Água (50)
+      expect(userRepository.getAllBillsByUserId).toHaveBeenCalledWith(userId);
+    });
+  
+    test('Deve lidar com erro ao obter somatório de contas do tipo específico', async () => {
+      const userId = 1;
+      const type = 'fixa';
+      const errorMessage = 'Erro ao buscar contas parciais. Por favor, tente novamente mais tarde.';
+      userRepository.getAllBillsByUserId.mockRejectedValue(new Error(errorMessage));
+  
+      await expect(billDomain.getParcialBalanceAll(userId, type)).rejects.toThrow(errorMessage);
+      expect(userRepository.getAllBillsByUserId).toHaveBeenCalledWith(userId);
+    });
   });
