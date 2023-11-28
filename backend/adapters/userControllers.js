@@ -19,10 +19,11 @@ router.get('/homepage', (req, res) => {
 router.post('/cadastrarUsuario', (req, res) => {
     
     login = req.body.login
-    password = req.body.senha
-
+    password = req.body.password
+    console.log(login, password)
     userDomain.registerUser(login, password)
         .then(result => {
+            console.log('Usuário cadastrado com sucesso');
             res.status(200).json({ message: 'Usuário cadastrado com sucesso!' });
         })
         .catch(error => {
@@ -33,15 +34,18 @@ router.post('/cadastrarUsuario', (req, res) => {
 
 router.post('/login', (req, res) => {
     
-    //const { login, password } = req.body;
     login = req.body.login
-    password = req.body.senha
-
+    password = req.body.password
+    
     userDomain.authenticateUser(login, password)
         .then(user => {
             if (user) {
+                console.log("Login bem sucedido")
+                //res.sendFile(path.join(__dirname, '../../html/homepage.html'));
+                //res.status(200).send({ message: 'Login bem-sucedido' })
                 res.status(200).json({ message: 'Login bem-sucedido' });
             } else {
+                console.log('Credenciais inválidas') 
                 res.status(401).json({ message: 'Credenciais inválidas' });
             }
         })

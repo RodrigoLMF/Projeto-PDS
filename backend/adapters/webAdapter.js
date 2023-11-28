@@ -16,6 +16,7 @@ function start() {
     app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
         extended: true
     }));
+    app.use(express.json());
     app.use(cors());
 
     app.use('/', userRouter);
