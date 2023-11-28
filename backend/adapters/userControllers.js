@@ -8,6 +8,14 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../index.html'));
 });
 
+router.get('/cadastro', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../html/cadastro.html'));
+});
+
+router.get('/homepage', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../html/homepage.html'));
+});
+
 router.post('/cadastrarUsuario', (req, res) => {
     
     login = req.body.login
