@@ -11,31 +11,7 @@ const billRouter = require('./billControllers');
 const notificationRouter = require('./notificationControllers')
 
 function start() {
-    app.get('/css/stylesheet.css', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../css/stylesheet.css'));
-    });
-
-    app.get('/js/login.js', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../js/login.js'));
-    });
-
-    app.get('/js/signup.js', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../js/signup.js'));
-    });
-
-    app.get('/css/bootstrap.min.css', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../css/bootstrap.min.css'));
-    });
-
-    app.get('/css/style.css', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../css/style.css'));
-    });
-
-    app.get('/css/typography.css', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../css/typography.css'));
-    });
-
-    app.use(express.static(path.join(__dirname + '../../')));
+    app.use(express.static(path.join(__dirname, '../../')));
 
     app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
         extended: true
