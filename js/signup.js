@@ -18,7 +18,8 @@ document.getElementById("btnCadastrar").addEventListener("click", function() {
     .then(data => {
         console.log(data);
         alert('Usuário cadastrado com sucesso!'); 
-        window.location.href = 'html/homepage.html'; 
+        //window.location.href = 'html/homepage.html'; 
+        window.location.href = '/homepage';
     })
     .catch(error => {
         console.error('Erro ao cadastrar usuário:', error);

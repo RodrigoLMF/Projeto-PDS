@@ -14,7 +14,8 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
   .then(response => response.json())
   .then(data => {
     if (data.message === 'Login bem-sucedido') {
-      window.location.href = 'html/homepage.html'; 
+      //window.location.href = 'html/homepage.html'; 
+      window.location.href = '/homepage'; 
     } else {
       alert('Credenciais inválidas. Por favor, tente novamente.');
     }
