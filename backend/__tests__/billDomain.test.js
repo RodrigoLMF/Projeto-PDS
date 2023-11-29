@@ -1,4 +1,5 @@
 // __tests__/billDomain.test.js
+// Teste de dominio
 const billDomain = require('../domain/Bill/billDomain.js');
 const { Bill } = require('../domain/Bill/Bill.js');
 
