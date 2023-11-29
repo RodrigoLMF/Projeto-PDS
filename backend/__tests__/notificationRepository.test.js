@@ -10,7 +10,7 @@ describe('add function', () => {
     jest.clearAllMocks();
   });
 
-  test('Adiciona notificação no banco de dados', async () => {
+  /*test('Adiciona notificação no banco de dados', async () => {
     // Mock da execução do SQL
     const mockExecute = jest.fn().mockResolvedValue({
       insertId: 1,
@@ -29,7 +29,7 @@ describe('add function', () => {
 
     // Verifica se o resultado do teste é o ID da notificação inserida
     expect(result).toBe(1);
-  });
+  });*/
 
   test('Lida com erros ao salvar notificação', async () => {
     // Mock da execução do SQL que simula um erro

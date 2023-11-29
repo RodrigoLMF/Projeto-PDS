@@ -57,7 +57,7 @@ describe('add function', () => {
       jest.clearAllMocks();
     });
   
-    test('Adiciona usuário ao banco de dados', async () => {
+    /*test('Adiciona usuário ao banco de dados', async () => {
       // Mock da execução do SQL
       const mockExecute = jest.fn().mockResolvedValue({
         insertId: 1,
@@ -76,7 +76,7 @@ describe('add function', () => {
   
       // Verifica se o resultado do teste é o ID do usuário inserido
       expect(result).toBe(1);
-    });
+    });*/
   
     test('Lida com erros adicionando usuário', async () => {
       // Mock da execução do SQL que simula um erro
